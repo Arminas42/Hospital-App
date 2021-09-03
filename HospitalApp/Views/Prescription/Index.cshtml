@@ -1,0 +1,53 @@
+﻿@model HospitalApp.ViewModels.PaginatedList<HospitalApp.Models.Prescription>
+@{ 
+    ViewData["Title"] = "Prescription Dashboard";
+}
+<h1>@ViewData["Title"]</h1>
+<div>
+    <h4>
+        <div class="time">
+            <a asp-action="Create" class="btn btn-primary">Create prescription</a>
+        </div>
+    </h4>
+    <span class="bg-info">@TempData["Message"]</span>
+    <hr />
+    @foreach (var prescription in Model)
+    {
+        <div class="project">
+            <div class="row bg-white has-shadow">
+                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                        <div class="text">
+                            <h3 class="h4">@prescription.Drug.Name</h3>
+                        </div>
+                        <div class="text">
+                            <h3 class="h4"> To @prescription.Patient.Name</h3>
+                        </div>
+                    </div>
+                    <div class="project-date"><span class="hidden-sm-down">Issued @prescription.DateOfIssue</span></div>
+                </div>
+                <div class="right-col col-lg-6 d-flex align-items-center">
+                    <div class="time">
+                        <a asp-action="View" asp-route-id="@prescription.Id" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<br />
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>

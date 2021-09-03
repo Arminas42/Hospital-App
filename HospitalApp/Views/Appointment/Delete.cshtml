@@ -1,0 +1,9 @@
+﻿@model HospitalApp.Models.Appointment
+<div>
+    <span class="alert-info">@ViewBag.DeleteMessage</span>
+    <form method="post" asp-action="Delete">
+        <h3> Do you want to delete an appointment</h3>
+        <button type="submit" class="btn btn-primary btn-outline-danger" >Delete</button>
+    </form>
+
+</div>

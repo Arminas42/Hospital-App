@@ -1,0 +1,29 @@
+﻿@model HospitalApp.ViewModels.ChooseAppointmentVM
+
+<div>
+   <a asp-action="Create" asp-route-DoctorId="@Model.DoctorId" class="btn btn-primary mb-1">Register Patient</a>
+    @foreach (var appointment in Model.Appointments)
+    {
+        <div class="project">
+            <div class="row bg-white has-shadow">
+                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                        <div class="text">
+                            <h3 class="h4">@(appointment.Patient == null ? "Not Registered patient" : appointment.Patient.Name )</h3><small>@appointment.Doctor</small>
+                        </div>
+                    </div>
+                    <div class="project-date"><span class="hidden-sm-down">@appointment.DateTime</span></div>
+                </div>
+                <div class="right-col col-lg-6 d-flex align-items-center">
+                    <div class="time">
+                        <a asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-primary">Edit</a>
+                    </div>
+                    <div class="comments">
+                        <a asp-action="Delete" asp-route-id="@appointment.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

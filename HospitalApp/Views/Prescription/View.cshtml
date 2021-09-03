@@ -1,0 +1,34 @@
+﻿@model HospitalApp.Models.Prescription
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Prescription Details</h4>
+        <span class="bg-success">@ViewBag.ErrorMessage</span>
+
+        <hr />
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.Drug.Name</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Issued To:  @Model.Patient.Name</li>
+                    <li class="list-group-item">Issued By: Dr. @Model.Doctor.Name</li>
+                    <li class="list-group-item">Issue Date: @Model.DateOfIssue</li>
+                    <li class="list-group-item">Expiration Date: @Model.ExpirationDate</li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        @{
+            var result = (DateTime.Now - Model.DateOfIssue).TotalHours;
+            if (result < 1)
+            {
+                @:
+                <form asp-action="Delete" method="post">
+                    <input value="@Model.Id" type="hidden" name="id" />
+                    <button class="btn btn-danger" type="submit">Cancel the prescription</button>
+                </form>
+            }
+        }
+
+    </div>
+</div>  

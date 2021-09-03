@@ -1,0 +1,24 @@
+﻿@model List<HospitalApp.Models.Doctor>
+<div>
+    @foreach (var Doctor in Model)
+    {
+        <div class="project">
+            <div class="row bg-white has-shadow">
+                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                        <div class="text">
+                            <h3 class="h4">@Doctor.Name</h3>
+                        </div>
+                    </div>
+                    <div class="project-date"><span class="hidden-sm-down"></span></div>
+                </div>
+                <div class="right-col col-lg-6 d-flex align-items-center">
+                    <div>
+                        <a asp-action="ChooseAppointment" asp-route-id="@Doctor.Id" class="btn btn-dark">Select</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
+</div>
